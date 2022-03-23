@@ -12,7 +12,7 @@ module_check = 'PIL' in sys.modules
 proceed_font = False
 
 my_secret = os.environ['bot_key']
-print(os.getcwd())
+print(os.getcwd()) 
 
 # PLEASE CREATE DIRECTORIES BEFORE RUNNING!
 
