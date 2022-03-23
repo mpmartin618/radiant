@@ -1,13 +1,3 @@
-# Font Bot created by exofeel
-
-"""
-This bot takes on the idea of my previous bot. Comicsans
-and makes it bigger and better.
-"""
-
-
-# Clean up for open-sourcing
-
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
@@ -21,29 +11,24 @@ bot = commands.Bot(command_prefix='$')
 module_check = 'PIL' in sys.modules
 proceed_font = False
 
+my_secret = os.environ['bot_key']
+print(os.getcwd())
+
 # PLEASE CREATE DIRECTORIES BEFORE RUNNING!
 
 PATH_DIR = ""
 
 
-"""
-I have decided that having a paid bot isn't worth all the hassle. 
-I will keep the bot for free. 
-"""
-
 plus_enabled = True
 
-"""
-Maybe later I'll make it open-source for new developers to use and learn from.
-"""
 
 client = discord.Client()
 clear = os.system("clear")
 
 @bot.event
 async def on_ready():
-    print("fontbot is good to go.")
-    print("fontbot is running with the id: " + bot.user.id)
+    print("Mechbot is good to go.")
+    print("Mechbot is running with the id: " + bot.user.id)
 
 
 @bot.command(pass_context=True)
@@ -156,38 +141,7 @@ async def fontbot_help(ctx):
 
     await bot.say(embed=embed)
 
-"""
-need to clean up
+bot.run(my_secret)
 
-@bot.command(pass_context=True)
-async def announcement(ctx, *, message: str):
-    try:
-        font_type = ImageFont.truetype(PATH_DIR + 'fontbot/fonts/unisans.otf',64)
-        image = Image.open('/fontbot/mod_announcement.png')
-        draw = ImageDraw.Draw(image)
-        draw.text(xy=(61,141),text=message,fill=(137,255,111),font=font_type)
-        import uuid
-        filename = str(uuid.uuid4())
-        image.save('/fontbot/output/mod_announcements/{}.png'.format(filename))
-        path = '/fontbot/output/mod_announcements/{}.png'.format(filename)
-        await bot.send_file(ctx.message.channel, path)
-    except OSError:
-        await bot.say(":warning: **OSError found. Please contact @exofeel**")
-"""
-
-
-"""
-need to find a better way
-
-@bot.command(pass_context=True)
-async def fonts(ctx):
-    import glob, os
-    await bot.say("**Current Fonts Installed**")
-    os.chdir(PATH_DIR + "fontbot/fonts/downloaded_fonts/")
-    for file in glob.glob("*.ttf"):
-        await bot.say(file)
-"""
-
-bot.run('add your own token')
 
 
