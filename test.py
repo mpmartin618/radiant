@@ -5,7 +5,7 @@ import sys
 from discord.ext import commands
 from discord.ext.commands import Bot
 import asyncio
-import PIL
+# import PIL
 from PIL import Image, ImageDraw, ImageFont
 # import uuid
 debug_mode = True
@@ -20,15 +20,15 @@ PATH_DIR = os.getcwd()
 print(PATH_DIR)
 IMG_OPEN_DIR = PATH_DIR
 
-def font(message, color_text="black", fontsize=40):
+def font(message, color_text="white", fontsize=40):
   text = message
-  fontrequest="comicsans"
-  
-  image = PIL.Image.open(IMG_OPEN_DIR + "/limit.png")
-  font_type = fontrequest
-  path = PATH_DIR + "/fonts/"       
+  font ="Radiant"
 
-  draw = PIL.ImageDraw.Draw(image)
+  image = Image.open(IMG_OPEN_DIR + "/limit.png")
+  print(PATH_DIR + '/fonts/{}.ttf'.format(font))
+  font_type = ImageFont.truetype(PATH_DIR + '/fonts/{}.ttf'.format(font),fontsize)       
+
+  draw = ImageDraw.Draw(image)
   draw.text(xy=(3,3),text=text,fill=("{}".format(color_text)),font=font_type)
   # import uuid
   # filename = str(uuid.uuid4())
@@ -38,4 +38,4 @@ def font(message, color_text="black", fontsize=40):
   path = PATH_DIR + '/output/{}.png'.format(filename)
   # await bot.send_file(ctx.message.channel, path)
 
-font('test')
+font('Radiant')
