@@ -31,11 +31,18 @@ async def on_ready():
   print("Mechbot is good to go.")
   print("Mechbot is running with the id: " + str(bot.user.id))
 
+# @bot.command(pass_context=True)
+# async def say(ctx, message=None):
+#   await ctx.send(message)
 
+#need to clean up the output folder for any .png files if they exist
+#need to figure out how to pass a string of text with spaces for the message since it assumes the color 
+  #need to figure out how to send back the message because I think we may need to create a new function to send the message
+  #tried the .send ffrom what it was before etc, need to research this more
 @bot.command(pass_context=True)
 async def connected(ctx):
   servers = list(client.servers)
-  await bot.say("connected on " + str(len(client.servers)))
+  await bot.send("connected on " + str(len(client.servers)))
   for x in range(len(servers)):
       print(' ' + servers[x-1].name)
 
@@ -47,7 +54,7 @@ async def font(ctx, message, color_text="white", fontsize=40):
     try:
         # 30 max unless you want text running over
         if len(text) >= 40:
-            await bot.say("I'm sorry that message is too long. **40** is maximum character count.")
+            await bot.send("I'm sorry that message is too long. **40** is maximum character count.")
 
         else:
             pass
@@ -63,7 +70,7 @@ async def font(ctx, message, color_text="white", fontsize=40):
                 import uuid
                 filename = str(uuid.uuid4())
                 image.save(PATH_DIR + '/output/{}.png'.format(filename))
-                await bot.say("{} says:".format(ctx.message.author.mention))
+                await bot.send("{} says:".format(ctx.message.author.mention))
                 path = PATH_DIR + '/output/{}.png'.format(filename)
                 await bot.send_file(ctx.message.channel, path)
             # else:
@@ -73,15 +80,15 @@ async def font(ctx, message, color_text="white", fontsize=40):
             #     import uuid
             #     filename = str(uuid.uuid4())
             #     image.save(PATH_DIR + 'fontbot/output/{}.png'.format(filename))
-            #     await bot.say("{} says:".format(ctx.message.author.mention))
+            #     await bot.send("{} says:".format(ctx.message.author.mention))
             #     path = PATH_DIR + 'fontbot/output/{}.png'.format(filename)
             #     await bot.send_file(ctx.message.channel, path)
             #     os.system("rm {}/fontbot/output/{}.png".format(path, filename))
     except OSError as e:
         if debug_mode == True:
-            await bot.say(e.strerror)
-        await bot.say("**Uh oh!** The font ``{}`` is not a font available.".format(fontrequest))
-        await bot.say("See ``$fontbot_help`` on how to use fontbot")
+            await bot.send(e.strerror)
+        await bot.send("**Uh oh!** The font ``{}`` is not a font available.".format(fontrequest))
+        await bot.send("See ``$fontbot_help`` on how to use fontbot")
 
 # @bot.command(pass_context=True)
 # async def install(ctx, ttf_file, name):
@@ -94,7 +101,7 @@ async def font(ctx, message, color_text="white", fontsize=40):
 #                 font_check = Path(path + "{}.ttf".format(name))
 #                 if font_check.is_file():
 #                     print("font already exists")
-#                     await bot.say("Looks like that font already exists! Change the name or use {} in the command.".format(name))
+#                     await bot.send("Looks like that font already exists! Change the name or use {} in the command.".format(name))
 #                 else:
 #                     pass
 #                     import urllib.request
@@ -102,14 +109,14 @@ async def font(ctx, message, color_text="white", fontsize=40):
 #                     print("Downloading {}...".format(name))
 #                     urllib.request.urlretrieve(ttf_file, filename)
 #                     print("Downloaded {}".format(name))
-#                     await bot.say("**Congratulations!** The font {} has been successfully installed. To use do ``#font 'Message' {} Color``".format(name, name))
+#                     await bot.send("**Congratulations!** The font {} has been successfully installed. To use do ``#font 'Message' {} Color``".format(name, name))
 #             else:
-#                 await bot.say("**Sorry!** This feature requires the Plus version.")
+#                 await bot.send("**Sorry!** This feature requires the Plus version.")
 #         else:
-#             await bot.say("Sorry, font name must only contain only alphanumerical characters and be under 15 characters..")
+#             await bot.send("Sorry, font name must only contain only alphanumerical characters and be under 15 characters..")
 
 #     except OSError:
-#             await bot.say("Error encountered. (112)")
+#             await bot.send("Error encountered. (112)")
     
 
 @bot.command(pass_context=True)
@@ -126,7 +133,7 @@ async def status(ctx):
         embed.add_field(name="Module Import Status", value=":white_check_mark: Modules are currently imported and running.", inline=False)       
     embed.add_field(name="Need any assistance?", value=":grey_question: DM @martystoked to ask any questions.", inline=False)
     embed.add_field(name="Bot Version", value="Current Bot Version: 1.0", inline=False)
-    await bot.say(embed=embed)
+    await bot.send(embed=embed)
 
 @bot.command(pass_context=True)
 async def fontbot_help(ctx):
@@ -139,7 +146,17 @@ async def fontbot_help(ctx):
     embed.add_field(name="Any questions?", value="You're more than welcome. \n@martystoked on Twiter", inline=True)
     # embed.add_field(name="Would like to donate?", value="Thanks, but let me finish first ;)", inline=True)
 
-    await bot.say(embed=embed)
+    await bot.send(embed=embed)
+
+
+    # async def on_message(self, message):
+    #     # we do not want the bot to reply to itself
+    #     if message.author.id == self.user.id:
+    #         return
+
+    #     if message.content.startswith('$guess'):
+    #         await message.channel.send('Guess a number between 1 and 10.')
+
 
 bot.run(my_secret)
 
