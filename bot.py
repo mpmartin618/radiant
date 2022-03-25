@@ -169,7 +169,7 @@ async def mech_help(ctx):
     #         await message.channel.send('Guess a number between 1 and 10.')
 
 #bot.run(my_secret)
-bot.run(config.DISCORD_TOKEN)
+bot.run(os.getenv("DISCORD_TOKEN"))
 
 
 
