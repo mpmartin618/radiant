@@ -47,14 +47,14 @@ async def connected(ctx):
       print(' ' + servers[x-1].name)
 
 @bot.command(pass_context=True)
-async def font(ctx, message, color_text="white", fontsize=40):
+async def font(ctx, message, color_text="white", fontsize=42):
     text = message
     font ="Radiant"
     # await bot.delete_message(ctx.message)
     try:
         # 30 max unless you want text running over
         if len(text) >= 40:
-            await bot.send("I'm sorry that message is too long. **40** is maximum character count.")
+            await ctx.send("I'm sorry that message is too long. **40** is maximum character count.")
 
         else:
             pass
@@ -66,16 +66,13 @@ async def font(ctx, message, color_text="white", fontsize=40):
             if font_check.is_file():
                 font_type = ImageFont.truetype(PATH_DIR + '/fonts/{}.ttf'.format(font),fontsize)
                 draw = ImageDraw.Draw(image)
-                draw.text(xy=(3,3),text=text,fill=("{}".format(color_text)),font=font_type)
+                draw.text(xy=(5,5),text=text,fill=("{}".format(color_text)),font=font_type)
                 import uuid
                 filename = str(uuid.uuid4())
                 image.save(PATH_DIR + '/output/{}.png'.format(filename))
                 await ctx.send("{} says:".format(ctx.message.author.mention))
                 path = PATH_DIR + '/output/{}.png'.format(filename)
-                print(path)
-                # await ctx.send_file(ctx.message.channel, path)
-                
-                # await ctx.send(file=path, embed=discord.Embed())
+                # print(path)
                 await ctx.send(file=discord.File(path))
             # else:
             #     font_type = ImageFont.truetype(PATH_DIR + '/fonts/downloaded_fonts/{}.ttf'.format(fontrequest),42)
@@ -90,9 +87,9 @@ async def font(ctx, message, color_text="white", fontsize=40):
             #     os.system("rm {}/fontbot/output/{}.png".format(path, filename))
     except OSError as e:
         if debug_mode == True:
-            await bot.send(e.strerror)
-        await bot.send("**Uh oh!** The font ``{}`` is not a font available.".format(fontrequest))
-        await bot.send("See ``$fontbot_help`` on how to use fontbot")
+            await ctx.send(e.strerror)
+        await ctx.send("**Uh oh!** The font ``{}`` is not a font available.".format(fontrequest))
+        await ctx.send("See ``$mech_bot_help`` on how to use fontbot")
 
 # @bot.command(pass_context=True)
 # async def install(ctx, ttf_file, name):
@@ -125,7 +122,7 @@ async def font(ctx, message, color_text="white", fontsize=40):
 
 @bot.command(pass_context=True)
 async def status(ctx):
-    embed = discord.Embed(title="Current Status", description="for FontBot", color=0x9b9b9b)
+    embed = discord.Embed(title="Current Status", description="for Mech Bot", color=0x9b9b9b)
     if debug_mode == True:
         embed.add_field(name="Debug Mode", value=":warning: Currently Active, I'm probably being worked on right now", inline=False)
     else:
@@ -137,20 +134,20 @@ async def status(ctx):
         embed.add_field(name="Module Import Status", value=":white_check_mark: Modules are currently imported and running.", inline=False)       
     embed.add_field(name="Need any assistance?", value=":grey_question: DM @martystoked to ask any questions.", inline=False)
     embed.add_field(name="Bot Version", value="Current Bot Version: 1.0", inline=False)
-    await bot.send(embed=embed)
+    await ctx.send(embed=embed)
 
 @bot.command(pass_context=True)
-async def fontbot_help(ctx):
-    embed = discord.Embed(title="Quick guide on how to use fontbot!", colour=discord.Colour(0x9b9b9b), description="This should give you the low-down and in's and outs of using the bot.")
+async def mech_bot_help(ctx):
+    embed = discord.Embed(title="Quick guide on how to use Mech Bot!", colour=discord.Colour(0x9b9b9b), description="This should give you the low-down and in's and outs of using the bot.")
 
 
-    embed.add_field(name="Writing messages", value="If you want to write a message. It's simple.```\n$font 'Message' Fontname Color``` \nPlease note, the default colors and text can be changed. By using the command ```\nComing Soon!```")
+    embed.add_field(name="Writing messages", value="If you want to write a message. It's simple.```\n$font 'Message' Color``` \nPlease note, the default colors and text can be changed.")
     # embed.add_field(name="Installing new fonts", value="You can also use new fonts as well. The great thing is that each server has it's own folder on my server. Meaning you can install personal or custom fonts. This also means you can use custom names! ```\n $install [linkto.ttf] nameOfFont``` \n Make sure it's a ``.ttf`` file. We **DO NOT SUPPORT ANY OTHER FORMAT**!. This isn't our fault.")
     embed.add_field(name="Checking the status of the bot", value="Sometimes, the bot can go down for numerous reasons. You can quickly check the status of the bot by doing ```$status```")
     embed.add_field(name="Any questions?", value="You're more than welcome. \n@martystoked on Twiter", inline=True)
     # embed.add_field(name="Would like to donate?", value="Thanks, but let me finish first ;)", inline=True)
 
-    await bot.send(embed=embed)
+    await ctx.send(embed=embed)
 
 
     # async def on_message(self, message):
