@@ -14,7 +14,7 @@ module_check = 'PIL' in sys.modules
 proceed_font = False
 
 #bot secret:
-my_secret = os.environ['bot_key']
+my_secret = DISCORD_TOKEN
 
 PATH_DIR = os.getcwd()
 print(PATH_DIR)
