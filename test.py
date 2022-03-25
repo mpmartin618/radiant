@@ -1,4 +1,3 @@
-# print('hello world')
 import discord
 import os
 import sys

@@ -70,9 +70,13 @@ async def font(ctx, message, color_text="white", fontsize=40):
                 import uuid
                 filename = str(uuid.uuid4())
                 image.save(PATH_DIR + '/output/{}.png'.format(filename))
-                await bot.send("{} says:".format(ctx.message.author.mention))
+                await ctx.send("{} says:".format(ctx.message.author.mention))
                 path = PATH_DIR + '/output/{}.png'.format(filename)
-                await bot.send_file(ctx.message.channel, path)
+                print(path)
+                # await ctx.send_file(ctx.message.channel, path)
+                
+                # await ctx.send(file=path, embed=discord.Embed())
+                await ctx.send(file=discord.File(path))
             # else:
             #     font_type = ImageFont.truetype(PATH_DIR + '/fonts/downloaded_fonts/{}.ttf'.format(fontrequest),42)
             #     draw = ImageDraw.Draw(image)
