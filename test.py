@@ -4,6 +4,7 @@ import sys
 from discord.ext import commands
 from discord.ext.commands import Bot
 import asyncio
+import glob
 # import PIL
 from PIL import Image, ImageDraw, ImageFont
 # import uuid
@@ -19,10 +20,15 @@ PATH_DIR = os.getcwd()
 print(PATH_DIR)
 IMG_OPEN_DIR = PATH_DIR
 
+
 def font(message, color_text="white", fontsize=40):
   text = message
   font ="Radiant"
 
+  
+  
+    
+  
   image = Image.open(IMG_OPEN_DIR + "/limit.png")
   print(PATH_DIR + '/fonts/{}.ttf'.format(font))
   font_type = ImageFont.truetype(PATH_DIR + '/fonts/{}.ttf'.format(font),fontsize)       
@@ -31,10 +37,24 @@ def font(message, color_text="white", fontsize=40):
   draw.text(xy=(3,3),text=text,fill=("{}".format(color_text)),font=font_type)
   # import uuid
   # filename = str(uuid.uuid4())
-  filename= 'test'
+  filename= 'test3'
   image.save(PATH_DIR + '/output/{}.png'.format(filename))
   # await bot.say("{} says:".format(ctx.message.author.mention))
   path = PATH_DIR + '/output/{}.png'.format(filename)
   # await bot.send_file(ctx.message.channel, path)
 
-font('Radiant')
+  
+  fileCounter = len(glob.glob1(PATH_DIR + '/output/',"*.png"))
+  print(fileCounter)
+  if fileCounter > 1:
+    print('hi')
+    test = os.listdir(PATH_DIR + '/output/')
+    for item in os.listdir(PATH_DIR + '/output/'):
+      print('yep')
+      if item.endswith(".png"):
+        print(item)
+        os.remove(PATH_DIR + '/output/'+ item)
+
+
+
+font("Radiant")

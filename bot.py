@@ -6,6 +6,7 @@ import PIL
 from PIL import Image, ImageDraw, ImageFont
 import os
 import sys
+import glob
 
 debug_mode = True
 bot = commands.Bot(command_prefix='$')
@@ -35,10 +36,7 @@ async def on_ready():
 # async def say(ctx, message=None):
 #   await ctx.send(message)
 
-#need to clean up the output folder for any .png files if they exist
-#need to figure out how to pass a string of text with spaces for the message since it assumes the color 
-  #need to figure out how to send back the message because I think we may need to create a new function to send the message
-  #tried the .send ffrom what it was before etc, need to research this more
+
 @bot.command(pass_context=True)
 async def connected(ctx):
   servers = list(client.servers)
@@ -74,6 +72,17 @@ async def font(ctx, message, color_text="white", fontsize=42):
                 path = PATH_DIR + '/output/{}.png'.format(filename)
                 # print(path)
                 await ctx.send(file=discord.File(path))
+                #File clean-up process 
+                fileCounter = len(glob.glob1(PATH_DIR + '/output/',"*.png"))
+                # print(fileCounter)
+                if fileCounter > 10:
+                  test = os.listdir(PATH_DIR + '/output/')
+                  for item in os.listdir(PATH_DIR + '/output/'):
+                    if item.endswith(".png"):
+                      # print(item)
+                      os.remove(PATH_DIR + '/output/'+ item)
+                
+              
             # else:
             #     font_type = ImageFont.truetype(PATH_DIR + '/fonts/downloaded_fonts/{}.ttf'.format(fontrequest),42)
             #     draw = ImageDraw.Draw(image)
@@ -89,7 +98,7 @@ async def font(ctx, message, color_text="white", fontsize=42):
         if debug_mode == True:
             await ctx.send(e.strerror)
         await ctx.send("**Uh oh!** The font ``{}`` is not a font available.".format(fontrequest))
-        await ctx.send("See ``$mech_bot_help`` on how to use fontbot")
+        await ctx.send("See ``$mech_help`` on how to use fontbot")
 
 # @bot.command(pass_context=True)
 # async def install(ctx, ttf_file, name):
@@ -137,14 +146,14 @@ async def status(ctx):
     await ctx.send(embed=embed)
 
 @bot.command(pass_context=True)
-async def mech_bot_help(ctx):
+async def mech_help(ctx):
     embed = discord.Embed(title="Quick guide on how to use Mech Bot!", colour=discord.Colour(0x9b9b9b), description="This should give you the low-down and in's and outs of using the bot.")
 
 
-    embed.add_field(name="Writing messages", value="If you want to write a message. It's simple.```\n$font 'Message' Color``` \nPlease note, the default colors and text can be changed.")
+    embed.add_field(name="Writing messages", value="If you want to write a message. It's simple.```\n$font \"Message\" Color``` \nPlease note, the default color (white) can be changed.")
     # embed.add_field(name="Installing new fonts", value="You can also use new fonts as well. The great thing is that each server has it's own folder on my server. Meaning you can install personal or custom fonts. This also means you can use custom names! ```\n $install [linkto.ttf] nameOfFont``` \n Make sure it's a ``.ttf`` file. We **DO NOT SUPPORT ANY OTHER FORMAT**!. This isn't our fault.")
     embed.add_field(name="Checking the status of the bot", value="Sometimes, the bot can go down for numerous reasons. You can quickly check the status of the bot by doing ```$status```")
-    embed.add_field(name="Any questions?", value="You're more than welcome. \n@martystoked on Twiter", inline=True)
+    embed.add_field(name="Any questions?", value="You're more than welcome. \n@martystoked on Twiter or DM me here", inline=True)
     # embed.add_field(name="Would like to donate?", value="Thanks, but let me finish first ;)", inline=True)
 
     await ctx.send(embed=embed)
