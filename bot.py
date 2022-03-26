@@ -46,7 +46,7 @@ async def connected(ctx):
       print(' ' + servers[x-1].name)
 
 @bot.command(pass_context=True)
-async def font(ctx, message, color_text="white", fontsize=42):
+async def font(ctx, message, color_text="white", fontsize=60):
     text = message
     font ="Radiant"
     # await bot.delete_message(ctx.message)
@@ -151,7 +151,7 @@ async def mech_help(ctx):
     embed = discord.Embed(title="Quick guide on how to use Mech Bot!", colour=discord.Colour(0x9b9b9b), description="This should give you the low-down and in's and outs of using the bot.")
 
 
-    embed.add_field(name="Writing messages", value="If you want to write a message. It's simple.```\n$font \"Message\" Color``` \nPlease note, the default color (white) can be changed.")
+    embed.add_field(name="Writing messages", value="If you want to write a message. It's simple.```\n$font \"Message\" Color(optional) Font_size(optional)``` \nPlease note, the default color (white) and font size (60) can be changed.")
     # embed.add_field(name="Installing new fonts", value="You can also use new fonts as well. The great thing is that each server has it's own folder on my server. Meaning you can install personal or custom fonts. This also means you can use custom names! ```\n $install [linkto.ttf] nameOfFont``` \n Make sure it's a ``.ttf`` file. We **DO NOT SUPPORT ANY OTHER FORMAT**!. This isn't our fault.")
     embed.add_field(name="Checking the status of the bot", value="Sometimes, the bot can go down for numerous reasons. You can quickly check the status of the bot by doing ```$status```")
     embed.add_field(name="Any questions?", value="@martystoked on Twiter or DM me here", inline=True)
