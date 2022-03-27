@@ -32,8 +32,8 @@ clear = os.system("clear")
 async def on_ready():
   print("Mechbot is good to go.")
   print("Mechbot is running with the id: " + str(bot.user.id))
-#   await client.change_presence(activity=discord.Game('Radiant Black Video Game'))
-  await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name='Radiant Black Podcast'))
+#   await ctx.change_presence(activity=discord.Game('Radiant Black Video Game'))
+  await ctx.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name='Radiant Black Podcast'))
 
 # @bot.command(pass_context=True)
 # async def say(ctx, message=None):
