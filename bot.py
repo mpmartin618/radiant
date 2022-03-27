@@ -50,13 +50,6 @@ async def servers(ctx):
     print(guild.name)
 
 @bot.command(pass_context=True)
-async def connected(ctx):
-  servers = list(client.guilds)
-  await ctx.send("connected on " + str(len(client.guilds)))
-  for x in range(len(servers)):
-      print(' ' + servers[x-1].name)
-
-@bot.command(pass_context=True)
 async def font(ctx, message, color_text="white", fontsize=60):
     text = message
     font ="Radiant"
