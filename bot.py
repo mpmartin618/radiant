@@ -40,8 +40,8 @@ async def on_ready():
 
 @bot.command(pass_context=True)
 async def connected(ctx):
-  servers = list(client.servers)
-  await bot.send("connected on " + str(len(client.servers)))
+  servers = list(client.guilds)
+  await bot.send("connected on " + str(len(client.guilds)))
   for x in range(len(servers)):
       print(' ' + servers[x-1].name)
 
