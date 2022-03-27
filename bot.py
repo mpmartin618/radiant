@@ -38,12 +38,14 @@ async def on_ready():
 #   await ctx.send(message)
 
 
-@bot.command()
+@bot.command(pass_context=True)
 async def servers(ctx):
   activeservers = client.guilds
-  for guild in activeservers:
-      await ctx.send(guild.name)
-      print(guild.name)
+  await ctx.send("connected on: " +str(len(activeservers)) + " servers")
+  
+  for guild in activeservers:  
+    await ctx.send(guild.name)
+    print(guild.name)
 
 @bot.command(pass_context=True)
 async def connected(ctx):
