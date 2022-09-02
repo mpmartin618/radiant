@@ -10,7 +10,7 @@ import glob
 import config
 
 debug_mode = False
-bot = commands.Bot(command_prefix='$')
+bot = commands.Bot(command_prefix='/')
 module_check = 'PIL' in sys.modules
 proceed_font = False
 
