@@ -1,4 +1,4 @@
-# Radiant Font
+# Radiant Font: 
 Thank you for downloading and using the "Radiant" font created by Nick Castillo!
 
 all rights, properties, and ownership of Interlectual property are owned by Image comics, Kyle higgans, and all parties associated with the Radiant Black universe. 
