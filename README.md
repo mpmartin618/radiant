@@ -3,7 +3,7 @@ Thank you for downloading and using the "Radiant" font created by Nick Castillo!
 
 all rights, properties, and ownership of Interlectual property are owned by Image comics, Kyle higgans, and all parties associated with the Radiant Black universe. 
 
-How to use font:
+How to use font: 
 
 This is an unoffical fan created font. this font is not meant to be used for comercial use, proffit, or redistrubted for personal financial gain. please out of respect for it's creator and the community of Radiant Black, use this font respecfully.
 
