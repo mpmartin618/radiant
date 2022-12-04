@@ -15,7 +15,8 @@ module_check = 'PIL' in sys.modules
 proceed_font = False
 
 #bot secret:
-#my_secret = os.environ['bot_key']
+
+my_secret = os.environ['Bot_key']
 
 PATH_DIR = os.getcwd()
 print(PATH_DIR)
@@ -172,8 +173,8 @@ async def mech_help(ctx):
     #     if message.content.startswith('$guess'):
     #         await message.channel.send('Guess a number between 1 and 10.')
 
-#bot.run(my_secret)
-bot.run(os.getenv("DISCORD_TOKEN"))
+bot.run(my_secret)
+#bot.run(os.getenv("DISCORD_TOKEN"))
 
 
 
