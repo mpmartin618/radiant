@@ -9,8 +9,11 @@ import sys
 import glob
 import config
 
+intents = discord.Intents.all()
+intents.members = True
+
 debug_mode = False
-bot = commands.Bot(command_prefix='$')
+bot = commands.Bot(command_prefix='$',intents=intents)
 module_check = 'PIL' in sys.modules
 proceed_font = False
 
