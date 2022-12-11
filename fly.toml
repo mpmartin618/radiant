@@ -1,0 +1,8 @@
+# fly.toml file generated for radiantbot on 2022-12-10T20:48:02-05:00
+
+app = "radiantbot"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
