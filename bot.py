@@ -8,6 +8,10 @@ import os
 import sys
 import glob
 import config
+# from keep_alive import keep_alive
+
+intents = discord.Intents.all()
+intents.members = True
 
 intents = discord.Intents.all()
 intents.members = True
@@ -18,7 +22,8 @@ module_check = 'PIL' in sys.modules
 proceed_font = False
 
 #bot secret:
-#my_secret = os.environ['bot_key']
+
+my_secret = os.environ['Bot_key']
 
 PATH_DIR = os.getcwd()
 print(PATH_DIR)
@@ -28,7 +33,7 @@ IMG_OPEN_DIR = PATH_DIR
 plus_enabled = True
 
 
-client = discord.Client()
+# client = discord.Client()
 clear = os.system("clear")
 
 @bot.event
@@ -174,9 +179,9 @@ async def mech_help(ctx):
 
     #     if message.content.startswith('$guess'):
     #         await message.channel.send('Guess a number between 1 and 10.')
-
-#bot.run(my_secret)
-bot.run(os.getenv("DISCORD_TOKEN"))
+  
+bot.run(my_secret)
+#bot.run(os.getenv("DISCORD_TOKEN"))
 
 
 
