@@ -1,5 +1,5 @@
 language = "python3"
-run = "bot.py"
+run = "python bot.py"
 
 [env]
 VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"
@@ -26,7 +26,7 @@ support = true
 
 [debugger.interactive]
 transport = "localhost:0"
-startCommand = ["dap-python", "main.py"]
+startCommand = ["dap-python", "bot.py"]
 
 [debugger.interactive.integratedAdapter]
 dapTcpAddress = "localhost:0"
